@@ -1,0 +1,21 @@
+apiVersion: apps/v1 # replicaset does not belong to v1, it belongs to "apps" group "v1" version
+kind: ReplicaSet
+metadata:
+  name: kube-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: kube-app
+  template:
+    metadata:
+      labels:
+        app: kube-app
+    spec:
+      containers:
+        - image: kube-app
+          name: kube-app
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+              protocol: TCP
